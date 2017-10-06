@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+  rest-template-api:
+    build:
+      context: .
+      dockerfile: dockers/rest-template-api/Dockerfile
+    ports:
+      - 8787:8787
+      - 8080:8080
+      - 9990:9990
+    volumes:
+      - ./RestTemplateEAR/volumes/deployments/:/opt/jboss/jboss-eap-7.0/standalone/deployments
+    restart: always
+  rest-template-db:
+    build:
+      context: .
+      dockerfile: dockers/rest-template-db/Dockerfile
+    restart: always
+    environment:
+      - POSTGRES_DB=rest_template
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=8batf44AxDaPJAD3
+    ports:
+      - 6000:5432

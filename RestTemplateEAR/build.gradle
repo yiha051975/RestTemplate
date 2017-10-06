@@ -1,0 +1,30 @@
+group 'com.sheldon.docker.rest.template'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'ear'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // The following dependencies will be the ear modules and
+    // will be placed in the ear root
+    // deploy project(':war')
+    deploy project(path: ":RestTemplateAPI", configuration: 'archives')
+
+    // The following dependencies will become ear libs and will
+    // be placed in a dir configured via the libDirName property
+    // earlib group: 'log4j', name: 'log4j'
+}
+
+task cleanVolumes(type: Delete) {
+    delete fileTree(dir: "./volumes/deployments/")
+}
+
+task copyEar(type: Copy) {
+    tasks.cleanVolumes.execute()
+    from "build/libs"
+    into "${project.projectDir}/volumes/deployments"
+    fileMode = 0644
+}

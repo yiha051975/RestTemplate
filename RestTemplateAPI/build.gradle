@@ -1,0 +1,32 @@
+group 'com.sheldon.docker.rest.template'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    /*maven {
+        url 'https://maven.repository.redhat.com/ga/'
+    }*/
+}
+
+war {
+    archiveName 'RestTemplate.war'
+}
+
+dependencies {
+    compileOnly group: 'javax', name: 'javaee-api', version: '7.0'
+    // https://mvnrepository.com/artifact/org.jboss.bom/jboss-eap-javaee7
+    /*compileOnly group: 'org.jboss.bom', name: 'jboss-eap-javaee7', version: '7.0.0.GA', ext: 'pom'*/
+    // compileOnly fileTree(dir: 'C:\\Users\\Sheld\\Downloads\\JBOSS_EAP_7.0\\base', include: '**/*.jar')
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
+    compileOnly group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.0.9.Final', ext: 'pom'
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    compileOnly group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

@@ -1,0 +1,6 @@
+rootProject.name = 'RestTemplate'
+include 'RestTemplateAPI'
+include 'RestTemplateEAR'
+/*include 'RestTemplateAPI2'
+findProject(':RestTemplateAPI2')?.name = 'RestTemplateAPI'*/
+
